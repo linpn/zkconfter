@@ -1,0 +1,32 @@
+用Zookeeper实现的配置中心，可以在线管理和推送dev(开发)、test(测试)、www(生产)三版本的配置文件，并支持动态资源管控(DRM)，可实现运行时修改drm变量。
+
+Using Zookeeper to achieve the configuration center.Can be managed online and push dev, test and www version of the configuration file, and support dynamic resource management, that can be implemented to modify the run-time DRM variable.
+
+
+Add in spring.xml:
+
+<bean class="com.github.zkconfter.config.ZkConfterPropertyPlaceholderConfigurer">
+    <property name="zkConfter">
+        <bean class="com.github.zkconfter.ZkConfter">
+            <property name="config">
+                <value>classpath:zkconfter.properties</value>
+            </property>
+        </bean>
+    </property>
+    <property name="locations">
+        <list>
+            <value>classpath:{zkconfter.runtime}/*.conf</value>
+        </list>
+    </property>
+</bean>
+
+
+Add in pom.xml:
+
+<dependencies>
+    <dependency>
+        <groupId>com.github</groupId>
+        <artifactId>zkconfter</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
