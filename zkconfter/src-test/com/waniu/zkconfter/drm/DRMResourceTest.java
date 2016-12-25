@@ -1,7 +1,7 @@
-package com.github.zkconfter.drm;
+package com.waniu.zkconfter.drm;
 
-import com.github.zkconfter.annotation.DRMAttribute;
-import com.github.zkconfter.annotation.DRMResource;
+import com.waniu.zkconfter.annotation.DRMAttribute;
+import com.waniu.zkconfter.annotation.DRMResource;
 
 /**
  * Created by pinian.lpn on 2015/8/10.

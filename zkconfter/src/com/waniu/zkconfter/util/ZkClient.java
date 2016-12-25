@@ -1,4 +1,4 @@
-package com.github.zkconfter.util;
+package com.waniu.zkconfter.util;
 
 import org.I0Itec.zkclient.exception.ZkNoNodeException;
 import org.I0Itec.zkclient.exception.ZkNodeExistsException;

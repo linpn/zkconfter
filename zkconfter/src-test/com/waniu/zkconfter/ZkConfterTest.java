@@ -1,9 +1,9 @@
-package com.github.zkconfter;
+package com.waniu.zkconfter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.github.zkconfter.drm.DRMResourceTest;
-import com.github.zkconfter.util.ZkClient;
+import com.waniu.zkconfter.drm.DRMResourceTest;
+import com.waniu.zkconfter.util.ZkClient;
 import org.apache.zookeeper.CreateMode;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class ZkConfterTest {
         System.out.println(d);
 
         ZkClient zkClient = zkConfter.getZkClient();
-        String zkDrmAttribute = "/zkconfter/zkconfter-test/drm/test/com.github.zkconfter.drm.DRMResourceTest/testString";
+        String zkDrmAttribute = "/zkconfter/zkconfter-test/drm/test/com.waniu.zkconfter.drm.DRMResourceTest/testString";
 
         JSONObject dataAttribute = JSON.parseObject(zkClient.readData(zkDrmAttribute).toString());
         dataAttribute.put("value", "2");

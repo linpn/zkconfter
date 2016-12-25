@@ -20,4 +20,4 @@ zkconfter.runtime = dev
 zkconfter.drm = true
 
 # 从哪个包开始递归扫描DRM注解，有多个包用逗号隔开；默认不扫
-zkconfter.drm.packages = com.github.zookeeper.configcenter.xxx, com.github.zookeeper.configcenter.yyy
+zkconfter.drm.packages = xxx.xxx.xxx, yyy.yyy.yyy

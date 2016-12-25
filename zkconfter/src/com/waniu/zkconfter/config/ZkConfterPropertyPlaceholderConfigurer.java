@@ -1,6 +1,6 @@
-package com.github.zkconfter.config;
+package com.waniu.zkconfter.config;
 
-import com.github.zkconfter.ZkConfter;
+import com.waniu.zkconfter.ZkConfter;
 
 /**
  * 集成配置中心ZkConfter

@@ -1,4 +1,4 @@
-package com.github.zkconfter;
+package com.waniu.zkconfter;
 
 /**
  * Created by pinian.lpn on 2015/3/4.

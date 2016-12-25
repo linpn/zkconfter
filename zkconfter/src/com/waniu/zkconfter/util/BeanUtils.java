@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2004-2014 All Rights Reserved.
  */
-package com.github.zkconfter.util;
+package com.waniu.zkconfter.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

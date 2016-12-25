@@ -1,4 +1,4 @@
-package com.github.zkconfter.annotation;
+package com.waniu.zkconfter.annotation;
 
 import java.lang.annotation.*;
 

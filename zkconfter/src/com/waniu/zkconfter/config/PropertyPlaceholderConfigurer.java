@@ -1,6 +1,6 @@
-package com.github.zkconfter.config;
+package com.waniu.zkconfter.config;
 
-import com.github.zkconfter.ZkConfter;
+import com.waniu.zkconfter.ZkConfter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;

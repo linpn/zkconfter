@@ -1,11 +1,11 @@
-package com.github.zkconfter.ops.web;
+package com.waniu.zkconfter.ops.web;
 
-import com.github.jsplite.http.JspliteHttpRequest;
-import com.github.jsplite.http.JspliteHttpResponse;
-import com.github.jsplite.mvc.Controller;
-import com.github.jsplite.mvc.ModelView;
-import com.github.zkconfter.ZkConfter;
-import com.github.zkconfter.util.ZkClient;
+import com.github.lpn520.jsplite.http.JspliteHttpRequest;
+import com.github.lpn520.jsplite.http.JspliteHttpResponse;
+import com.github.lpn520.jsplite.mvc.Controller;
+import com.github.lpn520.jsplite.mvc.ModelView;
+import com.waniu.zkconfter.ZkConfter;
+import com.waniu.zkconfter.util.ZkClient;
 
 import java.util.List;
 
