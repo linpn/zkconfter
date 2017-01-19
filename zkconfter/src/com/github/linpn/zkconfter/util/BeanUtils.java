@@ -33,7 +33,9 @@ public class BeanUtils {
      *
      * @param source 源
      * @param clazz  要转换的类型
-     * @return
+     * @param <T>    目标类型
+     * @param <S>    原类型
+     * @return 返回复制的bean
      */
     public static <T, S> T copy(S source, Class<T> clazz) {
         try {
@@ -50,7 +52,9 @@ public class BeanUtils {
      *
      * @param sourceList 源
      * @param clazz      要转换的类型
-     * @return
+     * @param <T>        目标类型
+     * @param <S>        原类型
+     * @return 返回复制的bean
      */
     public static <T, S> List<T> copy(List<S> sourceList, Class<T> clazz) {
         List<T> targetList = new ArrayList<T>();
@@ -63,8 +67,8 @@ public class BeanUtils {
     /**
      * 获取包下的所有Class
      *
-     * @param packageName
-     * @return
+     * @param packageName 包名
+     * @return 返回包下的所有Class
      */
     public static List<Class<?>> getClasses(String packageName) {
         // 第一个class类的集合
@@ -147,13 +151,8 @@ public class BeanUtils {
 
     /**
      * 以文件的形式来获取包下的所有Class
-     *
-     * @param packageName
-     * @param packagePath
-     * @param recursive
-     * @param classes
      */
-    public static void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive, List<Class<?>> classes) {
+    private static void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive, List<Class<?>> classes) {
         // 获取此包的目录 建立一个File
         File dir = new File(packagePath);
         // 如果不存在或者 也不是目录就直接返回

@@ -5,13 +5,9 @@
     <artifactId>zkconfter</artifactId>
     <version>1.0.0</version>
 
-    <url>https://github.com/lpn520/zkconfter.git</url>
-    <developers>
-        <developer>
-            <name>Linpn</name>
-            <email>lpn520@gmail.com</email>
-        </developer>
-    </developers>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <!-- 构建 -->
     <build>
@@ -58,6 +54,22 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>

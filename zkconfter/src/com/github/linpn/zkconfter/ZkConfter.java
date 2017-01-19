@@ -25,8 +25,6 @@ import java.util.*;
 
 /**
  * ZkConfter 主操作对象，可以配置在Spring中
- * <p/>
- * Created by pinian.lpn on 2015/1/15.
  */
 public class ZkConfter implements InitializingBean {
 
@@ -56,6 +54,8 @@ public class ZkConfter implements InitializingBean {
 
     /**
      * 构造函数
+     *
+     * @param config 资源对象
      */
     public ZkConfter(Resource config) {
         try {
@@ -68,6 +68,8 @@ public class ZkConfter implements InitializingBean {
 
     /**
      * 构造函数
+     *
+     * @param zkConfterFile 配置文件
      */
     public ZkConfter(String zkConfterFile) {
         try {
@@ -86,11 +88,6 @@ public class ZkConfter implements InitializingBean {
         }
     }
 
-    /**
-     * 在BeanFactory载入后执行
-     *
-     * @throws Exception
-     */
     @Override
     public void afterPropertiesSet() throws Exception {
         this.init();
@@ -111,7 +108,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 初始化配置参数
      *
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public void init() throws IOException {
         logger.info("加载ZkConfter配置中心...");
@@ -158,7 +155,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 同步配置中心
      *
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public void syncZkConfter() throws IOException {
         //创建ZkClient对象
@@ -183,7 +180,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 上传本地文件至配置中心
      *
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public void uploadZkConfter() throws IOException {
         logger.info("开始向ZkConfter配置中心上传文件...");
@@ -219,7 +216,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 下载配置中心文件至本地
      *
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public void downloadZkConfter() throws IOException {
         logger.info("开始从ZkConfter配置中心下载文件...");
@@ -261,6 +258,9 @@ public class ZkConfter implements InitializingBean {
 
     /**
      * 启动并同步动态资源(DRM)
+     *
+     * @throws IllegalAccessException IllegalAccessException
+     * @throws InstantiationException InstantiationException
      */
     public void drmZkConfter() throws IllegalAccessException, InstantiationException {
         if (drmPackages == null || drmPackages.equals(""))
@@ -456,7 +456,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 获取所有从配置中心下载过来的配置信息
      *
-     * @return
+     * @return 返回配置信息
      */
     public static Properties config() {
         return zkConfigProps;
@@ -476,7 +476,7 @@ public class ZkConfter implements InitializingBean {
     /**
      * 获取所有drm对象
      *
-     * @return
+     * @return 返回所有drm对象
      */
     public static Map<String, Object> drm() {
         return zkDrmMaps;

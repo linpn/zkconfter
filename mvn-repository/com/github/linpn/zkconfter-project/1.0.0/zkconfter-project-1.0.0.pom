@@ -13,4 +13,33 @@
         <module>zkconfter-ops</module>
     </modules>
 
+
+    <url>https://github.com/linpn/zkconfter.git</url>
+
+    <!-- Maven中央仓库 -->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <developers>
+        <developer>
+            <name>Linpn</name>
+            <email>lpn520@gmail.com</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>git@github.com:linpn/zkconfter.git</url>
+        <connection>scm:git:git@github.com:linpn/zkconfter.git</connection>
+        <developerConnection>scm:git:git@github.com:linpn/zkconfter.git</developerConnection>
+    </scm>
+
 </project>

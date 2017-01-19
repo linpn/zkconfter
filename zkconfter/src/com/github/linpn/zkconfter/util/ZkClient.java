@@ -53,7 +53,12 @@ public class ZkClient extends org.I0Itec.zkclient.ZkClient {
     }
 
     /**
-     * 当znode不存在时返回空
+     * 读取节点下的数据，当znode不存在时返回空
+     *
+     * @param path         节点路径
+     * @param defaultValue 默认值
+     * @param <T>          返回的类型
+     * @return 返回节点下的数据
      */
     public <T extends Object> T readData(String path, T defaultValue) {
         if (this.exists(path)) {
@@ -65,6 +70,10 @@ public class ZkClient extends org.I0Itec.zkclient.ZkClient {
 
     /**
      * 向节点中写数据，当znode不存在时创建，如果存在则等同于{@link ZkClient#writeData(String, Object)}
+     *
+     * @param path 节点路径
+     * @param data 数据
+     * @param mode 创建模式
      */
     public void writeData(final String path, Object data, final CreateMode mode) {
         try {
@@ -78,14 +87,14 @@ public class ZkClient extends org.I0Itec.zkclient.ZkClient {
     /**
      * 判断有没有子节点
      *
-     * @param path
-     * @return
+     * @param path 节点路径
+     * @return 返回true或false
      */
-    public boolean hasChildren(String path){
+    public boolean hasChildren(String path) {
         List<String> list = super.getChildren(path);
-        if(list!=null && list.size()>0){
+        if (list != null && list.size() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -93,8 +102,8 @@ public class ZkClient extends org.I0Itec.zkclient.ZkClient {
     /**
      * 获取孩子节点的完整路径
      *
-     * @param path
-     * @return
+     * @param path 节点路径
+     * @return 返回孩子节点的完整路径
      */
     public List<String> getChildrenOfFullPath(String path) {
         List<String> list = super.getChildren(path);
@@ -113,8 +122,8 @@ public class ZkClient extends org.I0Itec.zkclient.ZkClient {
     /**
      * 递归获取孩子节点的完整路径
      *
-     * @param path
-     * @return
+     * @param path 节点路径
+     * @return 返回孩子节点的完整路径
      */
     public List<String> getChildrenOfFullPathRecursive(String path) {
         List<String> list = this.getChildrenOfFullPath(path);
