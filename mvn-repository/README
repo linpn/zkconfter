@@ -1,0 +1,6 @@
+<repositories>
+    <repository>
+        <id>zkconfter-mvn-repository</id>
+        <url>https://raw.githubusercontent.com/linpn/zkconfter/master/mvn-repository</url>
+    </repository>
+</repositories>

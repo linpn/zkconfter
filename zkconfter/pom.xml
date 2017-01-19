@@ -5,14 +5,6 @@
     <artifactId>zkconfter</artifactId>
     <version>1.0.0</version>
 
-    <url>https://github.com/lpn520/zkconfter.git</url>
-    <developers>
-        <developer>
-            <name>Linpn</name>
-            <email>lpn520@gmail.com</email>
-        </developer>
-    </developers>
-
     <!-- 构建 -->
     <build>
         <sourceDirectory>src</sourceDirectory>
