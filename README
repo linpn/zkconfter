@@ -5,9 +5,9 @@ Using Zookeeper to achieve the configuration center.Can be managed online and pu
 
 Add in spring.xml:
 
-<bean class="com.waniu.zkconfter.config.ZkConfterPropertyPlaceholderConfigurer">
+<bean class="ZkConfterPropertyPlaceholderConfigurer">
     <property name="zkConfter">
-        <bean class="com.waniu.zkconfter.ZkConfter">
+        <bean class="ZkConfter">
             <property name="config">
                 <value>classpath:zkconfter.properties</value>
             </property>
@@ -25,7 +25,7 @@ Add in pom.xml:
 
 <dependencies>
     <dependency>
-        <groupId>com.waniu</groupId>
+        <groupId>com.github.linpn</groupId>
         <artifactId>zkconfter</artifactId>
         <version>1.0.0</version>
     </dependency>
