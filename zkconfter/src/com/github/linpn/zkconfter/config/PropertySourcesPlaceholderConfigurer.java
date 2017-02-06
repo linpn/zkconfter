@@ -1,6 +1,5 @@
 package com.github.linpn.zkconfter.config;
 
-import com.github.linpn.zkconfter.ZkConfter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -14,7 +13,7 @@ import java.util.regex.Pattern;
 
 /**
  * Spring导入properties文件, 允许动态配置你要导入哪个目录下的配置文件
- *
+ * <p>
  * 属性locations中, 要获取zkconfter.properties的属性, 请用{}, 如: {zkconfter.runtime}
  *
  * @author Linpn
@@ -64,13 +63,6 @@ public class PropertySourcesPlaceholderConfigurer extends
         }
 
         super.setLocations(resources.toArray(new Resource[resources.size()]));
-
-        //设置ZkConfter
-        if (ZkConfter.config().size() <= 0) {
-            for (Resource res : resources) {
-                ZkConfter.config().load(res.getInputStream());
-            }
-        }
     }
 
 

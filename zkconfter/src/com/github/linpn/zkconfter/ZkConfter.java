@@ -99,6 +99,7 @@ public class ZkConfter implements InitializingBean {
         } else {
             //载入到Properties
             Resource[] resources = new PathMatchingResourcePatternResolver().getResources("file:/" + this.getLcPath() + "/**");
+            zkConfigProps.load(config.getInputStream());
             for (Resource res : resources) {
                 zkConfigProps.load(res.getInputStream());
             }
@@ -444,25 +445,6 @@ public class ZkConfter implements InitializingBean {
 
 
     /**
-     * 获取从配置中心下载过来的配置值
-     *
-     * @param key 配置文件的参数key
-     * @return 返回配置值，如果获取不到，返回空串
-     */
-    public static String config(String key) {
-        return zkConfigProps.getProperty(key, "");
-    }
-
-    /**
-     * 获取所有从配置中心下载过来的配置信息
-     *
-     * @return 返回配置信息
-     */
-    public static Properties config() {
-        return zkConfigProps;
-    }
-
-    /**
      * 获取drm对象，该对象在系统连接配置中心时创建，为本地单例的对象
      *
      * @param clazz DRM对象类型
@@ -482,27 +464,39 @@ public class ZkConfter implements InitializingBean {
         return zkDrmMaps;
     }
 
+    /**
+     * 获取已从配置中心下载过来的配置值
+     *
+     * @param key 配置文件的参数key
+     * @return 返回配置值，如果获取不到，返回空串
+     */
+    public static String config(String key) {
+        return zkConfigProps.getProperty(key, "");
+    }
 
     /**
-     * 直接获取本地的配置文件，不从配置中心下载
+     * 获取所有已从配置中心下载过来的配置信息
      *
      * @return 返回配置信息
      */
-    public static Properties getLocalProperties(String zkConfterFile) {
-        Properties props = new Properties();
+    public static Properties config() {
+        return zkConfigProps;
+    }
 
+
+    /**
+     * 获取所有从配置中心全新下载的配置信息
+     *
+     * @return 返回配置信息
+     */
+    public static Properties getAllNewConfig(String zkConfterFile) {
+        ZkConfter zkConfter = new ZkConfter(zkConfterFile);
         try {
-            ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-            props.load(new ClassPathResource(zkConfterFile).getInputStream());
-            Resource[] confs = resourcePatternResolver.getResources("classpath:" + props.getProperty("zkconfter.runtime") + "/*.conf");
-            for (Resource conf : confs) {
-                props.load(conf.getInputStream());
-            }
-        } catch (IOException e) {
+            zkConfter.afterPropertiesSet();
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-
-        return props;
+        return ZkConfter.config();
     }
 
 }
