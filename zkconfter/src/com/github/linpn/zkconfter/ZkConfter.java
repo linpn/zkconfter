@@ -482,4 +482,27 @@ public class ZkConfter implements InitializingBean {
         return zkDrmMaps;
     }
 
+
+    /**
+     * 直接获取本地的配置文件，不从配置中心下载
+     *
+     * @return 返回配置信息
+     */
+    public static Properties getLocalProperties(String zkConfterFile) {
+        Properties props = new Properties();
+
+        try {
+            ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
+            props.load(new ClassPathResource(zkConfterFile).getInputStream());
+            Resource[] confs = resourcePatternResolver.getResources("classpath:" + props.getProperty("zkconfter.runtime") + "/*.conf");
+            for (Resource conf : confs) {
+                props.load(conf.getInputStream());
+            }
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        return props;
+    }
+
 }
