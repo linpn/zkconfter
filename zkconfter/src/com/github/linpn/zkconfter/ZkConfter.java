@@ -90,7 +90,9 @@ public class ZkConfter implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.init();
+        if (this.zkServers == null || this.zkServers.equals(""))
+            this.init();
+
         if (!runtime.equals("dev")) {
             this.syncZkConfter();
             if (drm.equals("true")) {
