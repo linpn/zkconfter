@@ -103,7 +103,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
+            <artifactId>spring-context</artifactId>
             <version>3.2.15.RELEASE</version>
             <optional>true</optional>
         </dependency>

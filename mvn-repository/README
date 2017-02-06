@@ -4,3 +4,6 @@
         <url>https://raw.githubusercontent.com/linpn/zkconfter/master/mvn-repository</url>
     </repository>
 </repositories>
+
+
+mvn clean deploy -P sonatype-oss-release -Darguments="gpg.passphrase=***"

@@ -1,11 +1,11 @@
 package com.github.linpn.zkconfter.ops.web;
 
+import com.github.linpn.jsplite.http.JspliteHttpRequest;
+import com.github.linpn.jsplite.http.JspliteHttpResponse;
+import com.github.linpn.jsplite.mvc.Controller;
+import com.github.linpn.jsplite.mvc.ModelView;
 import com.github.linpn.zkconfter.ZkConfter;
 import com.github.linpn.zkconfter.util.ZkClient;
-import com.github.lpn520.jsplite.http.JspliteHttpRequest;
-import com.github.lpn520.jsplite.http.JspliteHttpResponse;
-import com.github.lpn520.jsplite.mvc.Controller;
-import com.github.lpn520.jsplite.mvc.ModelView;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Index implements Controller {
 
     @Override
     public void execute(JspliteHttpRequest request, JspliteHttpResponse response,
-                        ModelView model) throws Exception {
+                        ModelView model) {
 
         ZkClient zkClient = zkConfter.getZkClient();
 
