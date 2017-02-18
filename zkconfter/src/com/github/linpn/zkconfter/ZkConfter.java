@@ -55,20 +55,6 @@ public class ZkConfter implements InitializingBean {
     /**
      * 构造函数
      *
-     * @param config 资源对象
-     */
-    public ZkConfter(Resource config) {
-        try {
-            this.config = config;
-            this.init();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 构造函数
-     *
      * @param zkConfterFile 配置文件
      */
     public ZkConfter(String zkConfterFile) {
@@ -82,7 +68,7 @@ public class ZkConfter implements InitializingBean {
                     this.config = new UrlResource(zkConfterFile);
                 }
             }
-            this.init();
+            this.afterPropertiesSet();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -493,12 +479,7 @@ public class ZkConfter implements InitializingBean {
      */
     public static Properties getAllNewConfig(String zkConfterFile) {
         ZkConfter zkConfter = new ZkConfter(zkConfterFile);
-        try {
-            zkConfter.afterPropertiesSet();
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        return ZkConfter.config();
+        return zkConfter.zkConfigProps;
     }
 
 }
