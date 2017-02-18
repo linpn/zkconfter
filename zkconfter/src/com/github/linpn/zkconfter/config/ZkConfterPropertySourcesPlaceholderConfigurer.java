@@ -13,7 +13,7 @@ public class ZkConfterPropertySourcesPlaceholderConfigurer extends PropertySourc
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-        super.setConfig(zkConfter.getConfig());
+        super.setConfig(zkConfter.getResource());
         super.afterPropertiesSet();
 	}
 

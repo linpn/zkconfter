@@ -12,9 +12,9 @@
 	</welcome-file-list>
 
 	<!-- 设置session超时 -->
-	<session-config>
+	<session-resource>
 		<session-timeout>120</session-timeout>
-	</session-config>
+	</session-resource>
 
 	<!-- url rewrite filter -->
 	<filter>

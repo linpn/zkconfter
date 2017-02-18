@@ -32,7 +32,9 @@ public class ZkConfter implements InitializingBean {
     private final static String DEFAULT_ZKCONFTER_FILE = "zkconfter.properties";
     private final static String ZK_ROOT = "/zkconfter/";
 
-    private Resource config;
+    private Resource resource;
+    private Resource[] resources;
+
     private ZkClient zkClient;
     private String appRoot;
 
@@ -59,13 +61,13 @@ public class ZkConfter implements InitializingBean {
      */
     public ZkConfter(String zkConfterFile) {
         try {
-            this.config = new ClassPathResource(zkConfterFile);
+            this.resource = new ClassPathResource(zkConfterFile);
 
-            if (!this.config.exists()) {
-                this.config = new FileSystemResource(zkConfterFile);
+            if (!this.resource.exists()) {
+                this.resource = new FileSystemResource(zkConfterFile);
 
-                if (!this.config.exists()) {
-                    this.config = new UrlResource(zkConfterFile);
+                if (!this.resource.exists()) {
+                    this.resource = new UrlResource(zkConfterFile);
                 }
             }
             this.afterPropertiesSet();
@@ -86,8 +88,8 @@ public class ZkConfter implements InitializingBean {
             }
         } else {
             //载入到Properties
-            Resource[] resources = new PathMatchingResourcePatternResolver().getResources("file:/" + this.getLcPath() + "/**");
-            zkConfigProps.load(config.getInputStream());
+            this.resources = new PathMatchingResourcePatternResolver().getResources("file:/" + this.getLcPath() + "/**");
+            zkConfigProps.load(resource.getInputStream());
             for (Resource res : resources) {
                 zkConfigProps.load(res.getInputStream());
             }
@@ -104,10 +106,10 @@ public class ZkConfter implements InitializingBean {
 
         //获取zkconfter配置
         Properties zkProps = new Properties();
-        if (config == null || !config.exists()) {
+        if (resource == null || !resource.exists()) {
             zkProps.load(this.getClass().getClassLoader().getResourceAsStream(DEFAULT_ZKCONFTER_FILE));
         } else {
-            zkProps.load(config.getInputStream());
+            zkProps.load(resource.getInputStream());
         }
 
         //Zk配置中心地址
@@ -350,19 +352,27 @@ public class ZkConfter implements InitializingBean {
     }
 
 
-    public Resource getConfig() {
-        return config;
+    public Resource getResource() {
+        return resource;
     }
 
-    public void setConfig(Resource config) {
-        this.config = config;
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
+
+    public Resource[] getResources() {
+        return resources;
+    }
+
+    public void setResources(Resource[] resources) {
+        this.resources = resources;
     }
 
     public ZkClient getZkClient() {
         return zkClient;
     }
 
-    public Properties getProperties(){
+    public Properties getProperties() {
         return zkConfigProps;
     }
 
@@ -408,7 +418,7 @@ public class ZkConfter implements InitializingBean {
     }
 
     private String getZkRoot() {
-        return ZK_ROOT + appName + "/config";
+        return ZK_ROOT + appName + "/resource";
     }
 
     private String getZkDrmRoot() {
@@ -485,5 +495,4 @@ public class ZkConfter implements InitializingBean {
         ZkConfter zkConfter = new ZkConfter(zkConfterFile);
         return zkConfter.getProperties();
     }
-
 }
