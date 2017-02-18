@@ -362,6 +362,10 @@ public class ZkConfter implements InitializingBean {
         return zkClient;
     }
 
+    public Properties getProperties(){
+        return zkConfigProps;
+    }
+
     private String getAppRoot() {
         if (appRoot != null)
             return appRoot;
@@ -479,7 +483,7 @@ public class ZkConfter implements InitializingBean {
      */
     public static Properties getAllNewConfig(String zkConfterFile) {
         ZkConfter zkConfter = new ZkConfter(zkConfterFile);
-        return zkConfter.zkConfigProps;
+        return zkConfter.getProperties();
     }
 
 }
