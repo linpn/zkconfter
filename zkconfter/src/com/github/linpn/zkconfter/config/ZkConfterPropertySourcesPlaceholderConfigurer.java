@@ -7,7 +7,7 @@ import com.github.linpn.zkconfter.ZkConfter;
  * Spring导入properties文件，允许动态配置你要导入哪个目录下的配置文件。
  * @author Linpn
  */
-public class ZkConfterPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
+public class ZkConfterPropertySourcesPlaceholderConfigurer extends PropertySourcesPlaceholderConfigurer {
 
 	private ZkConfter zkConfter;
 	
