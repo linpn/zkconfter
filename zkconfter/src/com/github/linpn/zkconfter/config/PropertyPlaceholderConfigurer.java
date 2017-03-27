@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
  *
  * @author Linpn
  */
-public class PropertySourcesPlaceholderConfigurer extends
-        org.springframework.context.support.PropertySourcesPlaceholderConfigurer implements InitializingBean {
+public class PropertyPlaceholderConfigurer extends
+        org.springframework.beans.factory.config.PropertyPlaceholderConfigurer implements InitializingBean {
 
     private String contextPath = this.getClass().getResource("/").toString().replaceAll("WEB-INF/classes/", "");
     private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
