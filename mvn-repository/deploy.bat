@@ -1,4 +1,4 @@
 del com/
-cd ../
-call mvn -DaltDeploymentRepository=snapshot-repo::default::file:mvn-repository clean deploy
+cd ../zkconfter
+call mvn -DaltDeploymentRepository=snapshot-repo::default::file:../mvn-repository clean deploy
 @pause
