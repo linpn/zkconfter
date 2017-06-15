@@ -42,6 +42,7 @@ public class ZkConfter implements InitializingBean {
     private String appName;
     private String root;
     private String runtime;
+    private String sync;
     private String drm;
     private String drmPackages;
 
@@ -78,10 +79,10 @@ public class ZkConfter implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (this.zkServers == null || this.zkServers.equals(""))
+        if (this.appName == null || this.appName.equals(""))
             this.init();
 
-        if (!runtime.equals("dev")) {
+        if (!this.zkServers.equals("") && this.sync.equals("true")) {
             this.syncZkConfter();
             if (drm.equals("true")) {
                 this.drmZkConfter();
@@ -112,29 +113,33 @@ public class ZkConfter implements InitializingBean {
             zkProps.load(resource.getInputStream());
         }
 
+        //系统名
+        appName = zkProps.getProperty(SysConstant.APP_NAME, "zkconfter");
+        logger.info(SysConstant.APP_NAME + " = " + appName);
+
         //Zk配置中心地址
         zkServers = zkProps.getProperty(SysConstant.ZK_SERVERS, "");
-        logger.info(SysConstant.ZK_SERVERS + "=" + zkServers);
-
-        //系统名
-        appName = zkProps.getProperty(SysConstant.APP_NAME, "");
-        logger.info(SysConstant.APP_NAME + "=" + appName);
+        logger.info(SysConstant.ZK_SERVERS + " = " + zkServers);
 
         //本地配置文件目录
-        root = zkProps.getProperty(SysConstant.ROOT, "");
-        logger.info(SysConstant.ROOT + "=" + root);
+        root = zkProps.getProperty(SysConstant.ROOT, "conf");
+        logger.info(SysConstant.ROOT + " = " + root);
 
         //当前运行的环境
-        runtime = zkProps.getProperty(SysConstant.RUNTIME, "");
-        logger.info(SysConstant.RUNTIME + "=" + runtime);
+        runtime = zkProps.getProperty(SysConstant.RUNTIME, "dev");
+        logger.info(SysConstant.RUNTIME + " = " + runtime);
+
+        //是否从服务器同步(下载)配置文件
+        sync = zkProps.getProperty(SysConstant.SYNC, "false");
+        logger.info(SysConstant.SYNC + " = " + sync);
 
         //是否启用动态资源管控(DRM)
-        drm = zkProps.getProperty(SysConstant.DRM, "");
-        logger.info(SysConstant.DRM + "=" + drm);
+        drm = zkProps.getProperty(SysConstant.DRM, "false");
+        logger.info(SysConstant.DRM + " = " + drm);
 
         //从哪个包开始递归扫描DRM注解
         drmPackages = zkProps.getProperty(SysConstant.DRM_PACKAGES, "");
-        logger.info(SysConstant.DRM_PACKAGES + "=" + drmPackages);
+        logger.info(SysConstant.DRM_PACKAGES + " = " + drmPackages);
 
         //验证配置项
         if (zkServers.equals(""))
