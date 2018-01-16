@@ -7,7 +7,7 @@ Add in spring.xml:
 
 <bean class="com.github.linpn.zkconfter.config.ZkConfterPropertyPlaceholderConfigurer">
     <property name="zkConfter">
-        <bean class="ZkConfter">
+        <bean class="com.github.linpn.zkconfter.ZkConfter">
             <property name="resource">
                 <value>classpath:zkconfter.properties</value>
             </property>
