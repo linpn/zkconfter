@@ -398,7 +398,7 @@ public class ZkConfter implements InitializingBean {
             this.getProperties().load(res.getInputStream());
 
         } catch (Exception e) {
-            logger.info("No find " + filename);
+            logger.info("No file: " + filename);
         }
     }
 
