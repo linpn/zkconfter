@@ -381,6 +381,26 @@ public class ZkConfter implements InitializingBean {
         return zkConfigProps;
     }
 
+    public void load(String filename) {
+        try {
+            Resource res = new ClassPathResource(filename);
+
+            if (!res.exists()) {
+                res = new FileSystemResource(filename);
+
+                if (!res.exists()) {
+                    res = new UrlResource(filename);
+                }
+            }
+
+            this.getProperties().load(res.getInputStream());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     private String getAppRoot() {
         if (appRoot != null)
             return appRoot;
