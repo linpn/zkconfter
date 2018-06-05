@@ -71,7 +71,9 @@ public class ZkConfter implements InitializingBean {
                     this.resource = new UrlResource(zkConfterFile);
                 }
             }
+
             this.afterPropertiesSet();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -396,7 +398,7 @@ public class ZkConfter implements InitializingBean {
             this.getProperties().load(res.getInputStream());
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            logger.info("No find " + filename);
         }
     }
 
