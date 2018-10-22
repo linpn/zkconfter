@@ -56,6 +56,7 @@ public class PropertyPlaceholderConfigurer extends
             } else {
                 if (location.startsWith("file://") || location.startsWith("classpath:") || location.startsWith("classpath*:")) {
                 } else {
+                    location.replaceFirst("\\/", "");
                     location = contextPath + location;
                 }
             }
