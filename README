@@ -27,6 +27,6 @@ Add in pom.xml:
     <dependency>
         <groupId>com.github.linpn</groupId>
         <artifactId>zkconfter</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </dependency>
 </dependencies>
