@@ -44,14 +44,18 @@ public class PropertyPlaceholderConfigurer extends
         String regex = "\\{(.+)\\}";
 
         for (String location : locations) {
-            if (location.matches(regex)) {
-                Matcher m = Pattern.compile(regex).matcher(location);
-                for (int i = 1; m.find(); i++) {
+            Matcher m = Pattern.compile(regex).matcher(location);
+            if (m.find()) {
+                for (int i = 1; ; i++) {
                     if (location.startsWith("file://") || location.startsWith("classpath:") || location.startsWith("classpath*:")) {
                         location = location.replaceFirst(regex, propsConf.getProperty(m.group(i)));
                     } else {
+                        location = location.replaceFirst("\\/", "");
                         location = contextPath + location.replaceFirst(regex, propsConf.getProperty(m.group(i)));
                     }
+
+                    if (!m.find())
+                        break;
                 }
             } else {
                 if (location.startsWith("file://") || location.startsWith("classpath:") || location.startsWith("classpath*:")) {
