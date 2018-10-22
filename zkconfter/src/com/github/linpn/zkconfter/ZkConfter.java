@@ -45,6 +45,7 @@ public class ZkConfter implements InitializingBean {
     private String sync;
     private String drm;
     private String drmPackages;
+    private ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
     private static Properties zkConfigProps = new Properties();
     private static Map<String, Object> zkDrmMaps = new HashMap<String, Object>();
@@ -91,7 +92,11 @@ public class ZkConfter implements InitializingBean {
             }
         } else {
             //载入到Properties
-            this.resources = new PathMatchingResourcePatternResolver().getResources("file:/" + this.getLcPath() + "/**");
+            List<Resource> list = new ArrayList<Resource>();
+            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcRoot() + "/**")));
+            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcPath() + "/**")));
+            this.resources = list.toArray(new Resource[list.size()]);
+
             zkConfigProps.load(resource.getInputStream());
             for (Resource res : resources) {
                 zkConfigProps.load(res.getInputStream());
@@ -183,7 +188,6 @@ public class ZkConfter implements InitializingBean {
     public void uploadZkConfter() throws IOException {
         logger.info("开始向ZkConfter配置中心上传文件...");
 
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = resolver.getResources("file:/" + this.getLcPath() + "/**");
 
         //上传文件到配置中心
