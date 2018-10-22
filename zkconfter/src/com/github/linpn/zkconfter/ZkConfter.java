@@ -93,8 +93,8 @@ public class ZkConfter implements InitializingBean {
         } else {
             //载入到Properties
             List<Resource> list = new ArrayList<Resource>();
-            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcRoot() + "/**")));
-            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcPath() + "/**")));
+            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcRoot() + "/*.conf")));
+            list.addAll(Arrays.asList(resolver.getResources("file:/" + this.getLcPath() + "/*.conf")));
             this.resources = list.toArray(new Resource[list.size()]);
 
             zkConfigProps.load(resource.getInputStream());
